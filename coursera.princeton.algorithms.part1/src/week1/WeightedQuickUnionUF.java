@@ -1,12 +1,12 @@
 package week1;
 
-public class WeightedQuickUnion {
+public class WeightedQuickUnionUF {
 
 	private int[] id;
 	
 	private int[] size;
 	
-	public WeightedQuickUnion(int N)
+	public WeightedQuickUnionUF(int N)
 	{
 		this.id = new int[N];
 		this.size = new int[N];

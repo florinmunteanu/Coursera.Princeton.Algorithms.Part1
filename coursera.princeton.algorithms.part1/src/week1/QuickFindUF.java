@@ -31,4 +31,12 @@ public class QuickFindUF {
 			}
 		}
 	}
+	
+	public void writeToConsole()
+	{
+		for (int i = 0; i < this.id.length; i++)
+		{
+			System.out.print(this.id[i]);
+		}
+	}
 }
