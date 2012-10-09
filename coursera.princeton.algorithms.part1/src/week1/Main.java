@@ -1,6 +1,8 @@
 package week1;
 
-import week2.InsertionSort;
+import week2.ShellSort;
+
+//import week2.InsertionSort;
 //import week2.SelectionSort;
 
 public class Main {
@@ -9,7 +11,10 @@ public class Main {
 	{
 		//SelectionSort s = new SelectionSort();
 		//s.sort(null);
-		InsertionSort s = new InsertionSort();
+		//InsertionSort s = new InsertionSort();
+		//s.sort(null);
+		
+		ShellSort s = new ShellSort();
 		s.sort(null);
 	}
 }
