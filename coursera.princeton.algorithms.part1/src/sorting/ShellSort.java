@@ -1,4 +1,4 @@
-package week2;
+package sorting;
 
 public class ShellSort 
 {

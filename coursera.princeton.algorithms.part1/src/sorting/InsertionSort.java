@@ -1,6 +1,6 @@
-package week2;
+package sorting;
 
-public class SelectionSort 
+public class InsertionSort 
 {
 	public void sort(int[] data)
 	{
@@ -8,27 +8,30 @@ public class SelectionSort
 		{
 			data = new int[] { 10, 5, 6, 8, 0, 12, 9, 1, 4 };
 		}
+		
 		for (int i = 0; i < data.length; i++)
 		{
-			int min = i;
-			for (int j = i + 1; j < data.length; j++)
+			for (int j = i; j > 0; j--)
 			{
-				if (data[j] < data[min])
+				if (data[j] < data[j - 1])
 				{
-					min = j;
+					this.swap(data, j, j - 1);
+				}
+				else
+				{
+					break;
 				}
 			}
-			this.swap(data, i, min);
 		}
 		
 		this.displayArray(data);
 	}
 	
 	private void displayArray(int[] data)
-	{
+	{ 
 		for (int i = 0; i < data.length; i++)
 		{
-			System.out.print(data[i]+ " ");			
+			System.out.print(data[i] + " ");
 		}
 		System.out.println();
 	}

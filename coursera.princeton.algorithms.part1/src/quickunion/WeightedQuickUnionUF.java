@@ -1,4 +1,4 @@
-package week1;
+package quickunion;
 
 public class WeightedQuickUnionUF {
 
