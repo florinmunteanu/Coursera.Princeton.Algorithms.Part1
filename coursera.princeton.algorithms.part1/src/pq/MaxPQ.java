@@ -1,5 +1,19 @@
 package pq;
 
+/*
+ * Documentation: 
+ * http://www.seas.upenn.edu/~cis121/lectures/24PriorityQueues.pdf
+ * 
+ * http://algs4.cs.princeton.edu/24pq/MaxPQ.java.html
+ * it also has a resize method
+ * private void resize(int capacity) 
+    {
+        assert capacity > N;
+        Key[] temp = (Key[]) new Object[capacity];
+        for (int i = 1; i <= N; i++) temp[i] = pq[i];
+        pq = temp;
+    }
+ */
 public class MaxPQ<Key extends Comparable<Key>> 
 {
 	private Key[] pq;   // heap-ordered complete binary tree
@@ -18,13 +32,22 @@ public class MaxPQ<Key extends Comparable<Key>>
 	public int size()
 	{
 		return this.N;
-	}
+	}	
 	
 	public void insert(Key v)
 	{
 		this.N++;
 		this.pq[N] = v;
 		this.swim(this.N);
+	}
+	
+	public void displayArray()
+	{
+		for (int i = 1; i <= N; i++) 
+		{
+			System.out.print(String.format("[%s] = %s ", i, this.pq[i].toString()));
+		}
+		System.out.println();
 	}
 	
 	public Key deleteMax()
@@ -59,6 +82,7 @@ public class MaxPQ<Key extends Comparable<Key>>
 			{
 				break;
 			}
+			this.exchange(k, j);
 			k = j;
 		}
 	}

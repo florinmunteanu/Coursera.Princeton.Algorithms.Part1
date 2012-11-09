@@ -1,6 +1,8 @@
-package quickunion;
+package program;
 
-import sorting.ShellSort;
+import pq.MaxPQ;
+
+//import sorting.ShellSort;
 
 //import week2.InsertionSort;
 //import week2.SelectionSort;
@@ -9,6 +11,33 @@ public class Program {
 
 	public static void main(String[] args) 
 	{
+		MaxPQ<String> pq = new MaxPQ<String>(30);
+		pq.insert("S");
+		pq.displayArray();
+		pq.insert("E");
+		pq.displayArray();
+		pq.insert("A");
+		pq.displayArray();
+		pq.insert("R");
+		pq.displayArray();
+		pq.insert("C");
+		pq.displayArray();
+		pq.insert("H");
+		pq.displayArray();
+		pq.insert("E");
+		pq.displayArray();
+		pq.insert("X");
+		pq.displayArray();
+		pq.insert("A");
+		pq.displayArray();
+		pq.insert("M");
+		pq.displayArray();
+		pq.insert("P");
+		pq.displayArray();
+		pq.insert("L");
+		pq.displayArray();
+		pq.insert("E");
+		pq.displayArray();
 		//SelectionSort s = new SelectionSort();
 		//s.sort(null);
 		//InsertionSort s = new InsertionSort();
