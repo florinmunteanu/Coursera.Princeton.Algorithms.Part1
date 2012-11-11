@@ -26,7 +26,7 @@ public class MaxPQ<Key extends Comparable<Key>>
 	
 	public boolean isEmpty()
 	{
-		return N == 0;
+		return this.N == 0;
 	}
 	
 	public int size()
