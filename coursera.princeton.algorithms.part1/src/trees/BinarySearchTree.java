@@ -1,8 +1,14 @@
 package trees;
 
 import java.util.LinkedList;
-import java.util.Queue;
+import java.lang.*;
+import java.util.*;
 
+/*
+ * Documentation:
+ * http://www.quora.com/Data-Structures/What-are-some-of-the-use-cases-of-various-traversal-methods-for-trees
+ * http://en.wikipedia.org/wiki/Tree_traversal
+ */
 public class BinarySearchTree<Key extends Comparable<Key>, Value> 
 {
 	private Node root;
@@ -51,6 +57,18 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value>
 	public void put(Key key, Value val)
 	{
 		this.root = this.put(this.root, key, val);
+	}
+	
+	public void putArray(Key[] keys, Value[] values)
+	{
+		if (keys == null) { throw new IllegalArgumentException("keys cannot be null."); }
+		if (values == null) { throw new IllegalArgumentException("values cannot be null."); }
+		
+		if (keys.length != values.length) { throw new IllegalArgumentException("keys and values must have the same length"); }
+		
+		for (int i = 0; i < keys.length; i++) {
+			this.put(keys[i], values[i]);
+		}
 	}
 	
 	private Node put(Node x, Key key, Value val)
@@ -138,6 +156,138 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value>
 				queue.add(n.right);
 			}
 		}		
+	}
+	
+	//
+	// Depth-first traversal
+	public void traversePreorder()
+	{
+		this.traversePreorder(this.root);
+	}
+	
+	private void traversePreorder(Node node)
+	{
+		if (node == null) { return; }
+		
+		System.out.printf("(Key %s, Value %s)", node.key, node.val);
+		this.traversePreorder(node.left);
+		this.traversePreorder(node.right);
+	}
+	
+	public void traverseInorder()
+	{
+		this.traverseInorder(this.root);
+	}
+	
+	private void traverseInorder(Node node)
+	{
+		if (node == null) { return; }
+		
+		this.traverseInorder(node.left);
+		System.out.printf("(Key %s, Value %s)", node.key, node.val);
+		this.traverseInorder(node.right);
+	}	
+	
+	//http://www.youtube.com/watch?v=2lxVhW5-GTk&feature=plcp
+	public void traverseIterativeInorder()
+	{
+		Stack<Node> stack = new Stack<Node>();
+		Node current = this.root;
+		
+		while ((current != null) || (stack.isEmpty() == false))
+		{
+			// if current is not null, we push current and shift focus to its left sub-tree
+			if (current != null)
+			{
+				stack.push(current);
+				current = current.left;
+			}
+			else
+			{
+				// pop out nodes from the stack and shift focus to its right sub-tree
+				current = stack.pop();
+				System.out.printf("(Key %s, Value %s)", current.key, current.val);
+				current = current.right;
+			}
+		}
+	}
+	
+	// http://www.youtube.com/watch?v=2lxVhW5-GTk&feature=plcp
+	public void traverseIterativePreorder()
+	{
+		Stack<Node> stack = new Stack<Node>();
+		Node current = this.root;
+		
+		while ((current != null) || (stack.isEmpty() == false))
+		{
+			if (current != null)
+			{
+				System.out.printf("(Key %s, Value %s)", current.key, current.val);
+				stack.push(current.right);
+				current = current.left;
+			}
+			else
+			{
+				current = stack.pop();
+			}
+		}
+	}
+	
+	public void traversePostorder()
+	{
+		this.traversePostorder(this.root);
+	}
+	
+	private void traversePostorder(Node node)
+	{
+		if (node == null) { return; }
+		
+		this.traversePostorder(node.left);
+		this.traversePostorder(node.right);
+		System.out.printf("(Key %s, Value %s)", node.key, node.val);
+	}
+	
+	// http://www.youtube.com/watch?v=XUZxmxmistg
+	public void traverseIterativePostorder()
+	{
+		Stack<Node> stack = new Stack<Node>();
+		Node previous = null;
+		
+		stack.push(this.root);
+		while (stack.isEmpty() == false)
+		{
+			Node current = stack.peek();
+			// make sure it is not a null
+			if (current == null)
+			{
+				stack.pop();
+			}
+			// if it's leaf node, print it
+			else if (current.left == null && current.right == null)
+			{
+				System.out.printf("(Key %s, Value %s)", current.key, current.val);
+				stack.pop();
+			}			
+			// 3rd - check if previous pointer is our left child
+			// if so we need to push right for processing
+			else if (current.left == previous)
+			{
+				stack.push(current.right);
+			}
+			// 4th - if previous pointer is current pointer's right child, print itself
+			else if (current.right == previous)
+			{				
+				System.out.printf("(Key %s, Value %s)", current.key, current.val);
+				stack.pop();
+			}
+			else
+			{
+				// otherwise push the left child for processing
+				stack.push(current.left);
+			}
+			
+			previous = current;			
+		}
 	}
 	
 	private void displayTree(Node root)

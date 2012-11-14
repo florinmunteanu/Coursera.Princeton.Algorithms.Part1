@@ -43,13 +43,37 @@ public class Program
 	private static void testBST()
 	{
 		BinarySearchTree<String, String> bst = new BinarySearchTree<String, String>();
-		bst.put("B", "B");
+		/*bst.put("B", "B");
 		bst.put("I", "I");
 		bst.put("N", "N");		
 		bst.put("A", "A");
 		bst.put("R", "R");
-		bst.put("Y", "Y");
-		bst.displayTree();
+		bst.put("Y", "Y");*/
+		//bst.displayTree();
+		
+		String[] keys = new String[] { "H", "F", "P", "D", "G", "M", "R", "A", "E", "L", "N", "Q", "T" };
+		bst.putArray(keys, keys);		
+		
+		System.out.println("Inorder traversal of tree \"H F P D G M R A E L N Q T\"");		
+		bst.traverseInorder();		
+		System.out.println();	
+		bst.traverseIterativeInorder();		
+		System.out.println();
+		System.out.println();
+		
+		System.out.println("Preorder traversal of tree \"H F P D G M R A E L N Q T\"");
+		bst.traversePreorder();
+		System.out.println();
+		bst.traverseIterativePreorder();
+		System.out.println();
+		System.out.println();
+		
+		System.out.println("Postorder traversal of tree \"H F P D G M R A E L N Q T\"");
+		bst.traversePostorder();
+		System.out.println();
+		bst.traverseIterativePostorder();
+		System.out.println();
+		System.out.println();
 		
 		System.out.println();
 	}
