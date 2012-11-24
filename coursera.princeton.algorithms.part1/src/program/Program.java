@@ -6,12 +6,13 @@ import sorting.MergeSort;
 import pq.MaxPQ;
 
 import trees.BinarySearchTree;
+import trees.RedBlackBST;
 
 public class Program 
 {
 	public static void main(String[] args) 
 	{
-		Program.testBST();
+		Program.testRedBlackTree();
 	}
 	
 	private static void testQueues()
@@ -143,5 +144,19 @@ public class Program
 		pq.displayArray();
 		pq.insert("E");
 		pq.displayArray();		
+	}
+	
+	private static void testRedBlackTree()
+	{
+		RedBlackBST<String, String> tree = new RedBlackBST<String, String>();
+		tree.put("S", "S");
+		tree.put("E", "E");
+		tree.put("A", "A");
+		tree.put("R", "R");
+		tree.put("C", "C");
+		tree.put("H", "H");
+		tree.put("X", "M");
+		tree.put("P", "P");
+		tree.put("L", "L");
 	}
 }
