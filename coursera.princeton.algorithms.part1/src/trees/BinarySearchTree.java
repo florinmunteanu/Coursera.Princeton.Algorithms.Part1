@@ -313,6 +313,23 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value>
         x.size = size(x.left) + size(x.right) + 1;
         return x;
     } 
+    
+     public void deleteMin() {
+        if (isEmpty()) throw new NoSuchElementException("Symbol table underflow");
+        root = deleteMin(root);
+        assert check();
+    }
+
+    private Node deleteMin(Node x) {
+        if (x.left == null) return x.right;
+        x.left = deleteMin(x.left);
+        x.size = size(x.left) + size(x.right) + 1;
+        return x;
+    }
+    
+    public boolean isEmpty() {
+        return size() == 0;
+    }
 	
 	private void displayTree(Node root)
 	{
