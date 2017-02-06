@@ -330,6 +330,16 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value>
     public boolean isEmpty() {
         return size() == 0;
     }
+    
+    public Key min() {
+        if (isEmpty()) throw new NoSuchElementException("called min() with empty symbol table");
+        return min(root).key;
+    } 
+
+    private Node min(Node x) { 
+        if (x.left == null) return x; 
+        else                return min(x.left); 
+    } 
 	
 	private void displayTree(Node root)
 	{
